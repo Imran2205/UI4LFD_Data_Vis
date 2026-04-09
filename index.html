@@ -70,11 +70,11 @@
     <div class="card videos" style="margin-bottom:12px;">
       <div class="video-wrap">
         <div class="label">Head</div>
-        <video id="headVideo" controls playsinline></video>
+    <video id="headVideo" controls playsinline crossorigin="anonymous"></video>
       </div>
       <div class="video-wrap">
         <div class="label">Wrist</div>
-        <video id="wristVideo" controls playsinline></video>
+    <video id="wristVideo" controls playsinline crossorigin="anonymous"></video>
       </div>
     </div>
 
@@ -109,11 +109,11 @@
     <div class="card videos">
       <div class="video-wrap">
         <div class="label">Head</div>
-        <video id="policyHeadVideo" controls playsinline></video>
+    <video id="policyHeadVideo" controls playsinline crossorigin="anonymous"></video>
       </div>
       <div class="video-wrap">
         <div class="label">Wrist</div>
-        <video id="policyWristVideo" controls playsinline></video>
+    <video id="policyWristVideo" controls playsinline crossorigin="anonymous"></video>
       </div>
     </div>
   </section>
@@ -181,12 +181,6 @@
       manifest = await res.json();
       taskSelect.innerHTML = manifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
       onTaskChange();
-      // Preload demo videos
-      const demoUrls = [];
-      manifest.forEach(t=>t.episodes.forEach(ep=>{
-        demoUrls.push(ep.head_video, ep.wrist_video);
-      }));
-      demoUrls.forEach(url=>cacheVideo(encodeURI(url)));
     }
 
     // ---------- Policy tab ----------
@@ -195,11 +189,6 @@
       policyManifest = await res.json();
       policyTaskSelect.innerHTML = policyManifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
       onPolicyTaskChange();
-      const policyUrls = [];
-      policyManifest.forEach(t=>t.episodes.forEach(ep=>{
-        policyUrls.push(ep.head_video, ep.wrist_video);
-      }));
-      policyUrls.forEach(url=>cacheVideo(encodeURI(url)));
     }
 
     function onPolicyTaskChange() {
@@ -212,12 +201,12 @@
       onPolicyEpisodeChange();
     }
 
-    function onPolicyEpisodeChange() {
+    async function onPolicyEpisodeChange() {
       const t = policyManifest[policyTaskSelect.value];
       const ep = t && t.episodes[policyEpisodeSelect.value];
       if (!ep) return;
-      setVideoSrc(policyHeadVideo, encodeURI(ep.head_video));
-      setVideoSrc(policyWristVideo, encodeURI(ep.wrist_video));
+      await setVideoSrc(policyHeadVideo, encodeURI(ep.head_video));
+      await setVideoSrc(policyWristVideo, encodeURI(ep.wrist_video));
       const r = parseFloat(policySpeedSelect.value);
       policyHeadVideo.playbackRate = policyWristVideo.playbackRate = r;
       policyHeadVideo.currentTime = 0;
@@ -302,11 +291,11 @@
     }
 
     async function setVideoSrc(videoEl, url) {
-      // Clean previous object URL if any
-      if (videoEl.dataset.objectUrl) {
-        URL.revokeObjectURL(videoEl.dataset.objectUrl);
-        delete videoEl.dataset.objectUrl;
-      }
+    // Clean previous object URL if any
+    if (videoEl.dataset.objectUrl) {
+      URL.revokeObjectURL(videoEl.dataset.objectUrl);
+      delete videoEl.dataset.objectUrl;
+    }
       videoEl.pause();
       videoEl.removeAttribute('src');
       videoEl.load();
@@ -326,13 +315,7 @@
           console.error('Video fallback failed', e);
         }
       };
-      const cached = videoCache.get(url);
-      if (cached) {
-        if (cached.startsWith('blob:')) videoEl.dataset.objectUrl = cached;
-        videoEl.src = cached;
-      } else {
-        videoEl.src = url;
-      }
+      videoEl.src = url;
       videoEl.load();
     }
 
