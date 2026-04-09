@@ -154,6 +154,8 @@
     const demoInstr = document.getElementById('demoInstr');
     const policyInstr = document.getElementById('policyInstr');
 
+    const videoCache = new Map(); // url -> blob URL
+
     function updateInstructions(tab) {
       if (tab === 'policy') {
         demoInstr.style.display = 'none';
@@ -179,6 +181,12 @@
       manifest = await res.json();
       taskSelect.innerHTML = manifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
       onTaskChange();
+      // Preload demo videos
+      const demoUrls = [];
+      manifest.forEach(t=>t.episodes.forEach(ep=>{
+        demoUrls.push(ep.head_video, ep.wrist_video);
+      }));
+      demoUrls.forEach(url=>cacheVideo(encodeURI(url)));
     }
 
     // ---------- Policy tab ----------
@@ -187,6 +195,11 @@
       policyManifest = await res.json();
       policyTaskSelect.innerHTML = policyManifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
       onPolicyTaskChange();
+      const policyUrls = [];
+      policyManifest.forEach(t=>t.episodes.forEach(ep=>{
+        policyUrls.push(ep.head_video, ep.wrist_video);
+      }));
+      policyUrls.forEach(url=>cacheVideo(encodeURI(url)));
     }
 
     function onPolicyTaskChange() {
@@ -271,6 +284,23 @@
       }
     }
 
+    async function cacheVideo(url) {
+      if (videoCache.has(url)) return videoCache.get(url);
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('fetch failed ' + resp.status);
+        const buf = await resp.arrayBuffer();
+        const blob = new Blob([buf], { type: 'video/mp4' });
+        const objUrl = URL.createObjectURL(blob);
+        videoCache.set(url, objUrl);
+        return objUrl;
+      } catch (e) {
+        console.error('Preload failed', url, e);
+        videoCache.set(url, url); // fallback to original
+        return url;
+      }
+    }
+
     async function setVideoSrc(videoEl, url) {
       // Clean previous object URL if any
       if (videoEl.dataset.objectUrl) {
@@ -288,19 +318,21 @@
         if (triedBlob) return;
         triedBlob = true;
         try {
-          const resp = await fetch(url);
-          if (!resp.ok) throw new Error('fetch failed ' + resp.status);
-          const buf = await resp.arrayBuffer();
-          const blob = new Blob([buf], { type: 'video/mp4' });
-          const objUrl = URL.createObjectURL(blob);
-          videoEl.dataset.objectUrl = objUrl;
+          const objUrl = await cacheVideo(url);
+          if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
           videoEl.src = objUrl;
           videoEl.load();
         } catch (e) {
           console.error('Video fallback failed', e);
         }
       };
-      videoEl.src = url;
+      const cached = videoCache.get(url);
+      if (cached) {
+        if (cached.startsWith('blob:')) videoEl.dataset.objectUrl = cached;
+        videoEl.src = cached;
+      } else {
+        videoEl.src = url;
+      }
       videoEl.load();
     }
 
