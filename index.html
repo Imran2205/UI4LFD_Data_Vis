@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Robot Demos & Policy Playback</title>
-  <link rel="stylesheet" href="https://unpkg.com/modern-normalize/2.0.0/modern-normalize.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css" />
   <script src="https://cdn.plot.ly/plotly-2.33.0.min.js"></script>
   <style>
     :root { --bg:#0f1115; --panel:#181b20; --accent:#4cc9f0; --text:#e8ecf2; --muted:#9aa0ab; }
@@ -272,7 +272,14 @@
     }
 
     async function setVideoSrc(videoEl, url) {
-      videoEl.src = url;
+      // Clean previous object URL if any
+      if (videoEl.dataset.objectUrl) {
+        URL.revokeObjectURL(videoEl.dataset.objectUrl);
+        delete videoEl.dataset.objectUrl;
+      }
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+      videoEl.load();
       videoEl.muted = true;
       videoEl.playsInline = true;
       videoEl.preload = 'metadata';
@@ -281,13 +288,20 @@
         if (triedBlob) return;
         triedBlob = true;
         try {
-          const buf = await fetch(url).then(r => r.arrayBuffer());
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error('fetch failed ' + resp.status);
+          const buf = await resp.arrayBuffer();
           const blob = new Blob([buf], { type: 'video/mp4' });
-          videoEl.src = URL.createObjectURL(blob);
+          const objUrl = URL.createObjectURL(blob);
+          videoEl.dataset.objectUrl = objUrl;
+          videoEl.src = objUrl;
+          videoEl.load();
         } catch (e) {
           console.error('Video fallback failed', e);
         }
       };
+      videoEl.src = url;
+      videoEl.load();
     }
 
     function renderPlots() {
