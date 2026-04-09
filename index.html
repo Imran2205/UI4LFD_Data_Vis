@@ -284,38 +284,32 @@
         videoCache.set(url, objUrl);
         return objUrl;
       } catch (e) {
-        console.error('Preload failed', url, e);
-        videoCache.set(url, url); // fallback to original
+        console.warn('Fetch failed, using raw URL', url, e);
+        videoCache.set(url, url);
         return url;
       }
     }
 
     async function setVideoSrc(videoEl, url) {
-    // Clean previous object URL if any
-    if (videoEl.dataset.objectUrl) {
-      URL.revokeObjectURL(videoEl.dataset.objectUrl);
-      delete videoEl.dataset.objectUrl;
-    }
+      // Clean previous object URL if any
+      if (videoEl.dataset.objectUrl) {
+        URL.revokeObjectURL(videoEl.dataset.objectUrl);
+        delete videoEl.dataset.objectUrl;
+      }
       videoEl.pause();
       videoEl.removeAttribute('src');
       videoEl.load();
       videoEl.muted = true;
       videoEl.playsInline = true;
       videoEl.preload = 'metadata';
-      let triedBlob = false;
-      videoEl.onerror = async () => {
-        if (triedBlob) return;
-        triedBlob = true;
-        try {
-          const objUrl = await cacheVideo(url);
-          if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
-          videoEl.src = objUrl;
-          videoEl.load();
-        } catch (e) {
-          console.error('Video fallback failed', e);
-        }
-      };
-      videoEl.src = url;
+      try {
+        const objUrl = await cacheVideo(url);
+        if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
+        videoEl.src = objUrl;
+      } catch (e) {
+        console.error('Setting video source failed', e);
+        videoEl.src = url;
+      }
       videoEl.load();
     }
 
