@@ -31,6 +31,15 @@
 </head>
 <body>
   <h1>Robot Dataset Viewer</h1>
+  <p id="bestNote" style="margin:4px 0 8px 0; color:#cfd3dc;">
+    For best results, use a desktop browser; mobile browsers may restrict autoplay or sizing.
+  </p>
+  <p id="demoInstr" style="margin:0 0 14px 0; color:#cfd3dc;">
+    Recorded Demo: select a task, pick an episode, press Play/Pause; scroll down to see full observation vs action plots.
+  </p>
+  <p id="policyInstr" style="margin:0 0 14px 0; color:#cfd3dc; display:none;">
+    Policy Execution: choose success or failure, select an episode, then Play/Pause to view synchronized head and wrist videos.
+  </p>
   <div class="tabs">
     <button class="tab-btn active" data-tab="demo">Recorded Demo</button>
     <button class="tab-btn" data-tab="policy">Policy Execution</button>
@@ -142,12 +151,26 @@
     const policySpeedSelect = document.getElementById('policySpeedSelect');
     const policyStatus = document.getElementById('policyStatus');
 
+    const demoInstr = document.getElementById('demoInstr');
+    const policyInstr = document.getElementById('policyInstr');
+
+    function updateInstructions(tab) {
+      if (tab === 'policy') {
+        demoInstr.style.display = 'none';
+        policyInstr.style.display = 'block';
+      } else {
+        demoInstr.style.display = 'block';
+        policyInstr.style.display = 'none';
+      }
+    }
+
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
+        updateInstructions(btn.dataset.tab);
       });
     });
 
@@ -304,6 +327,7 @@
 
     loadManifest().catch(err=>{ statusEl.textContent = 'Failed to load manifest'; console.error(err); });
     loadPolicyManifest().catch(err=>{ policyStatus.textContent = 'Failed to load policy manifest'; console.error(err); });
+    updateInstructions('demo');
   </script>
 </body>
 </html>
