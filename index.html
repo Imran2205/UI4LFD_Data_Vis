@@ -32,7 +32,7 @@
 <body>
   <h1>Robot Dataset Viewer</h1>
   <p id="bestNote" style="margin:4px 0 8px 0; color:#cfd3dc;">
-    For best results, use a desktop browser; mobile browsers may restrict autoplay or sizing.
+    For best results, use a desktop browser; mobile browsers may restrict autoplay or sizing. If a video fails to load, the data is available here for manual inspection: <a href="https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/" target="_blank" style="color:#8dd0ff;">https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/</a>.
   </p>
   <p id="demoInstr" style="margin:0 0 14px 0; color:#cfd3dc;">
     Recorded Demo: select a task, pick an episode, press Play/Pause; scroll down to see full observation vs action plots.
@@ -203,8 +203,8 @@
       const t = policyManifest[policyTaskSelect.value];
       const ep = t && t.episodes[policyEpisodeSelect.value];
       if (!ep) return;
-      policyHeadVideo.src = encodeURI(ep.head_video);
-      policyWristVideo.src = encodeURI(ep.wrist_video);
+      setVideoSrc(policyHeadVideo, encodeURI(ep.head_video));
+      setVideoSrc(policyWristVideo, encodeURI(ep.wrist_video));
       const r = parseFloat(policySpeedSelect.value);
       policyHeadVideo.playbackRate = policyWristVideo.playbackRate = r;
       policyHeadVideo.currentTime = 0;
@@ -234,8 +234,8 @@
       const t = manifest[taskSelect.value];
       const ep = t && t.episodes[episodeSelect.value];
       if (!ep) return;
-      headVideo.src = encodeURI(ep.head_video);
-      wristVideo.src = encodeURI(ep.wrist_video);
+      await setVideoSrc(headVideo, encodeURI(ep.head_video));
+      await setVideoSrc(wristVideo, encodeURI(ep.wrist_video));
       headVideo.playbackRate = wristVideo.playbackRate = parseFloat(speedSelect.value);
       headVideo.currentTime = 0;
       wristVideo.currentTime = 0;
@@ -269,6 +269,25 @@
         obsData.push(obs.slice(0,11));
         cmdData.push(cmd.slice(0,11));
       }
+    }
+
+    async function setVideoSrc(videoEl, url) {
+      videoEl.src = url;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.preload = 'metadata';
+      let triedBlob = false;
+      videoEl.onerror = async () => {
+        if (triedBlob) return;
+        triedBlob = true;
+        try {
+          const buf = await fetch(url).then(r => r.arrayBuffer());
+          const blob = new Blob([buf], { type: 'video/mp4' });
+          videoEl.src = URL.createObjectURL(blob);
+        } catch (e) {
+          console.error('Video fallback failed', e);
+        }
+      };
     }
 
     function renderPlots() {
