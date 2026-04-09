@@ -27,12 +27,17 @@
     .plots { display:grid; gap:12px; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 210px; }
     .plot-box { background:#0f1115; border:1px solid #20242c; border-radius:8px; padding:4px; }
     .muted { color:var(--muted); }
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; z-index:999; }
+    .overlay.hidden { display:none; }
+    .loader { width:60px; height:60px; border:6px solid #2a2e36; border-top-color: var(--accent); border-radius:50%; animation: spin 1s linear infinite; }
+    .overlay .msg { color:#e8ecf2; font-size:15px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
   <h1>Robot Dataset Viewer</h1>
   <p id="bestNote" style="margin:4px 0 8px 0; color:#cfd3dc;">
-    For best results, use a desktop browser; mobile browsers may restrict autoplay or sizing. If a video fails to load, the data is available here for manual inspection: <a href="https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/" target="_blank" style="color:#8dd0ff;">https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/</a>.
+    For best results, use a desktop browser; mobile browsers may restrict autoplay or sizing. If a video fails to load, the data is available here for manual inspection: <a href="https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/" target="_blank" style="color:#8dd0ff;">https://anonymous.4open.science/r/UI4LFD_Data_Vis-082B/</a>. In some browsers video loading may be slow because of URL anonymization; for best experience use Chrome.
   </p>
   <p id="demoInstr" style="margin:0 0 14px 0; color:#cfd3dc;">
     Recorded Demo: select a task, pick an episode, press Play/Pause; scroll down to see full observation vs action plots.
@@ -40,6 +45,11 @@
   <p id="policyInstr" style="margin:0 0 14px 0; color:#cfd3dc; display:none;">
     Policy Execution: choose success or failure, select an episode, then Play/Pause to view synchronized head and wrist videos.
   </p>
+  <div id="loadingOverlay" class="overlay hidden">
+    <div class="loader"></div>
+    <div class="msg">Loading videos… please wait</div>
+  </div>
+
   <div class="tabs">
     <button class="tab-btn active" data-tab="demo">Recorded Demo</button>
     <button class="tab-btn" data-tab="policy">Policy Execution</button>
@@ -155,6 +165,9 @@
     const policyInstr = document.getElementById('policyInstr');
 
     const videoCache = new Map(); // url -> blob URL
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    const controllableEls = [];
 
     function updateInstructions(tab) {
       if (tab === 'policy') {
@@ -164,6 +177,11 @@
         demoInstr.style.display = 'block';
         policyInstr.style.display = 'none';
       }
+    }
+
+    function setLoading(state) {
+      loadingOverlay.classList.toggle('hidden', !state);
+      controllableEls.forEach(el => { if (el) el.disabled = state; });
     }
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -205,8 +223,11 @@
       const t = policyManifest[policyTaskSelect.value];
       const ep = t && t.episodes[policyEpisodeSelect.value];
       if (!ep) return;
-      await setVideoSrc(policyHeadVideo, encodeURI(ep.head_video));
-      await setVideoSrc(policyWristVideo, encodeURI(ep.wrist_video));
+      setLoading(true);
+      await Promise.all([
+        setVideoSrc(policyHeadVideo, encodeURI(ep.head_video)),
+        setVideoSrc(policyWristVideo, encodeURI(ep.wrist_video))
+      ]);
       const r = parseFloat(policySpeedSelect.value);
       policyHeadVideo.playbackRate = policyWristVideo.playbackRate = r;
       policyHeadVideo.currentTime = 0;
@@ -214,6 +235,7 @@
       policyHeadVideo.pause();
       policyWristVideo.pause();
       policyStatus.textContent = `Loaded ${t.task} / ${ep.id}`;
+      setLoading(false);
     }
 
     policyPlayBtn.onclick = ()=>{ policyWristVideo.currentTime = policyHeadVideo.currentTime; policyHeadVideo.play(); policyWristVideo.play(); };
@@ -236,8 +258,11 @@
       const t = manifest[taskSelect.value];
       const ep = t && t.episodes[episodeSelect.value];
       if (!ep) return;
-      await setVideoSrc(headVideo, encodeURI(ep.head_video));
-      await setVideoSrc(wristVideo, encodeURI(ep.wrist_video));
+      setLoading(true);
+      await Promise.all([
+        setVideoSrc(headVideo, encodeURI(ep.head_video)),
+        setVideoSrc(wristVideo, encodeURI(ep.wrist_video))
+      ]);
       headVideo.playbackRate = wristVideo.playbackRate = parseFloat(speedSelect.value);
       headVideo.currentTime = 0;
       wristVideo.currentTime = 0;
@@ -250,6 +275,8 @@
       } catch (e) {
         console.error(e);
         statusEl.textContent = 'Failed to load JSONL';
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -302,15 +329,34 @@
       videoEl.muted = true;
       videoEl.playsInline = true;
       videoEl.preload = 'metadata';
-      try {
-        const objUrl = await cacheVideo(url);
-        if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
-        videoEl.src = objUrl;
-      } catch (e) {
-        console.error('Setting video source failed', e);
-        videoEl.src = url;
-      }
-      videoEl.load();
+      return new Promise(async (resolve) => {
+        const cleanup = () => {
+          videoEl.onerror = null;
+          videoEl.onloadedmetadata = null;
+        };
+        videoEl.onerror = async () => {
+          cleanup();
+          try {
+            const objUrl = await cacheVideo(url);
+            if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
+            videoEl.src = objUrl;
+            videoEl.load();
+            videoEl.onloadedmetadata = () => { cleanup(); resolve(); };
+          } catch (e) {
+            console.error('Video fallback failed', e);
+            resolve();
+          }
+        };
+        videoEl.onloadedmetadata = () => { cleanup(); resolve(); };
+        try {
+          const objUrl = await cacheVideo(url);
+          if (objUrl.startsWith('blob:')) videoEl.dataset.objectUrl = objUrl;
+          videoEl.src = objUrl;
+        } catch (e) {
+          videoEl.src = url;
+        }
+        videoEl.load();
+      });
     }
 
     function renderPlots() {
@@ -366,6 +412,12 @@
       const idx = Math.max(0, Math.round((headVideo.currentTime || 0) * fps));
       updateCursor(idx);
     });
+
+    // Controls to disable during loading
+    controllableEls.push(
+      taskSelect, episodeSelect, playBtn, pauseBtn, speedSelect,
+      policyTaskSelect, policyEpisodeSelect, policyPlayBtn, policyPauseBtn, policySpeedSelect
+    );
 
     loadManifest().catch(err=>{ statusEl.textContent = 'Failed to load manifest'; console.error(err); });
     loadPolicyManifest().catch(err=>{ policyStatus.textContent = 'Failed to load policy manifest'; console.error(err); });
