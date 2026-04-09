@@ -1,0 +1,1 @@
+Lift the blue block vertically after grasping.

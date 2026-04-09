@@ -1,0 +1,486 @@
+[
+  {
+    "task": "Grasp_the_blue_block",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Grasp the blue block.",
+        "head_video": "demo_recording/Grasp_the_blue_block/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Grasp_the_blue_block/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Grasp_the_blue_block/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Lift_the_blue_block_vertically_after_grasping",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Lift the blue block vertically after grasping.",
+        "head_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Lift_the_blue_block_vertically_after_grasping/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Move_the_blue_block_to_the_rectangle_A",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000006/episode_000006.jsonl"
+      },
+      {
+        "id": "episode_000007",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000007/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000007/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000007/episode_000007.jsonl"
+      },
+      {
+        "id": "episode_000008",
+        "prompt": "Move the blue block to the rectangle A.",
+        "head_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000008/head_rgb.mp4",
+        "wrist_video": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000008/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Move_the_blue_block_to_the_rectangle_A/episode_000008/episode_000008.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Pick_up_the_green_block_and_put_that_in_the_teal_box",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Pick up the green block and put that in the teal box.",
+        "head_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pick_up_the_green_block_and_put_that_in_the_teal_box/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Place_the_grasped_green_cube_in_the_teal_box",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Place the grasped green cube in the teal box.",
+        "head_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Place_the_grasped_green_cube_in_the_teal_box/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Pull_the_blue_block_toward_the_robot",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Pull the blue block toward the robot.",
+        "head_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pull_the_blue_block_toward_the_robot/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Push_the_blue_block_toward_the_teal_box",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Push the blue block toward the teal box.",
+        "head_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Push_the_blue_block_toward_the_teal_box/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Reach_the_gripper_tip_to_the_green_block",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Reach the gripper tip to the green block.",
+        "head_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Reach_the_gripper_tip_to_the_green_block/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Rotate_the_blue_block_by_30_degrees",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Rotate the blue block by 30 degrees.",
+        "head_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Rotate_the_blue_block_by_30_degrees/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Slide_the_blue_cube_into_rectangle_A",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Slide the blue cube into rectangle A.",
+        "head_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000006/episode_000006.jsonl"
+      }
+    ]
+  }
+]

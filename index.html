@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Demos & Policy Playback</title>
+  <link rel="stylesheet" href="https://unpkg.com/modern-normalize/2.0.0/modern-normalize.css" />
+  <script src="https://cdn.plot.ly/plotly-2.33.0.min.js"></script>
+  <style>
+    :root { --bg:#0f1115; --panel:#181b20; --accent:#4cc9f0; --text:#e8ecf2; --muted:#9aa0ab; }
+    body { background:var(--bg); color:var(--text); font-family: "Inter", "Segoe UI", system-ui, sans-serif; padding:16px; }
+    h1 { margin: 0 0 12px; }
+    .tabs { display:flex; gap:8px; margin-bottom:12px; }
+    .tab-btn { padding:8px 12px; border:1px solid var(--accent); background:transparent; color:var(--text); cursor:pointer; border-radius:6px; }
+    .tab-btn.active { background:var(--accent); color:#0b0c0f; }
+    .panel { display:none; }
+    .panel.active { display:block; }
+    .controls { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+    select, button, input { background:var(--panel); color:var(--text); border:1px solid #2a2e36; border-radius:6px; padding:6px 8px; }
+    button { cursor:pointer; }
+    .layout { display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:start; }
+    .card { background:var(--panel); border:1px solid #20242c; border-radius:10px; padding:12px; }
+    .videos { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:12px; align-items:start; }
+    .video-wrap { position:relative; background:#000; border:1px solid #222; border-radius:8px; overflow:hidden; aspect-ratio: 4 / 3; }
+    video { width:100%; height:100%; object-fit:contain; display:block; background:#000; }
+    .label { position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.65); color:#ffd166; padding:4px 8px; border-radius:6px; font-weight:600; font-size:13px; }
+    .plots { display:grid; gap:12px; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 210px; }
+    .plot-box { background:#0f1115; border:1px solid #20242c; border-radius:8px; padding:4px; }
+    .muted { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>Robot Dataset Viewer</h1>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="demo">Recorded Demo</button>
+    <button class="tab-btn" data-tab="policy">Policy Execution</button>
+  </div>
+
+  <section id="demo" class="panel active">
+    <div class="controls">
+      <label>Task
+        <select id="taskSelect"></select>
+      </label>
+      <label>Episode
+        <select id="episodeSelect"></select>
+      </label>
+      <button id="playBtn">Play</button>
+      <button id="pauseBtn">Pause</button>
+      <label>Speed
+        <select id="speedSelect">
+          <option value="0.5">0.5×</option>
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+      </label>
+      <span id="status" class="muted"></span>
+    </div>
+
+    <div class="card videos" style="margin-bottom:12px;">
+      <div class="video-wrap">
+        <div class="label">Head</div>
+        <video id="headVideo" controls playsinline></video>
+      </div>
+      <div class="video-wrap">
+        <div class="label">Wrist</div>
+        <video id="wristVideo" controls playsinline></video>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="muted" style="margin-bottom:6px;">Observation vs Action Command (11 channels)</div>
+      <div id="plots" class="plots"></div>
+    </div>
+  </section>
+
+  <section id="policy" class="panel">
+    <div class="controls">
+      <label>Result
+        <select id="policyTaskSelect"></select>
+      </label>
+      <label>Episode
+        <select id="policyEpisodeSelect"></select>
+      </label>
+      <button id="policyPlayBtn">Play</button>
+      <button id="policyPauseBtn">Pause</button>
+      <label>Speed
+        <select id="policySpeedSelect">
+          <option value="0.5">0.5×</option>
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+      </label>
+      <span id="policyStatus" class="muted"></span>
+    </div>
+
+    <div class="card videos">
+      <div class="video-wrap">
+        <div class="label">Head</div>
+        <video id="policyHeadVideo" controls playsinline></video>
+      </div>
+      <div class="video-wrap">
+        <div class="label">Wrist</div>
+        <video id="policyWristVideo" controls playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const fps = 10;
+    let manifest = [];
+    let obsData = [];
+    let cmdData = [];
+    let policyManifest = [];
+    const defaultChannelNames = [
+      'arm_extension','arm_lift','wrist_yaw','wrist_pitch','wrist_roll',
+      'head_pan','head_tilt','gripper','base_x','base_y','base_rotation'
+    ];
+    let channelNames = [];
+    let plotDivs = [];
+    let syncing = false;
+
+    const taskSelect = document.getElementById('taskSelect');
+    const episodeSelect = document.getElementById('episodeSelect');
+    const headVideo = document.getElementById('headVideo');
+    const wristVideo = document.getElementById('wristVideo');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const speedSelect = document.getElementById('speedSelect');
+    const statusEl = document.getElementById('status');
+
+    // Policy elements
+    const policyTaskSelect = document.getElementById('policyTaskSelect');
+    const policyEpisodeSelect = document.getElementById('policyEpisodeSelect');
+    const policyHeadVideo = document.getElementById('policyHeadVideo');
+    const policyWristVideo = document.getElementById('policyWristVideo');
+    const policyPlayBtn = document.getElementById('policyPlayBtn');
+    const policyPauseBtn = document.getElementById('policyPauseBtn');
+    const policySpeedSelect = document.getElementById('policySpeedSelect');
+    const policyStatus = document.getElementById('policyStatus');
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    async function loadManifest() {
+      const res = await fetch('demo_recording/manifest.json');
+      manifest = await res.json();
+      taskSelect.innerHTML = manifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
+      onTaskChange();
+    }
+
+    // ---------- Policy tab ----------
+    async function loadPolicyManifest() {
+      const res = await fetch('policy_execution/manifest.json');
+      policyManifest = await res.json();
+      policyTaskSelect.innerHTML = policyManifest.map((t,i)=>`<option value="${i}">${t.task.replace(/_/g,' ')}</option>`).join('');
+      onPolicyTaskChange();
+    }
+
+    function onPolicyTaskChange() {
+      const t = policyManifest[policyTaskSelect.value];
+      if (!t) return;
+      policyEpisodeSelect.innerHTML = t.episodes.map((ep,i)=>`<option value="${i}">${ep.id}</option>`).join('');
+      let defaultIdx = t.episodes.findIndex(ep => ep.id === 'episode_0001' || ep.id === 'episode_000001');
+      if (defaultIdx < 0) defaultIdx = Math.min(1, t.episodes.length - 1);
+      policyEpisodeSelect.value = defaultIdx.toString();
+      onPolicyEpisodeChange();
+    }
+
+    function onPolicyEpisodeChange() {
+      const t = policyManifest[policyTaskSelect.value];
+      const ep = t && t.episodes[policyEpisodeSelect.value];
+      if (!ep) return;
+      policyHeadVideo.src = encodeURI(ep.head_video);
+      policyWristVideo.src = encodeURI(ep.wrist_video);
+      const r = parseFloat(policySpeedSelect.value);
+      policyHeadVideo.playbackRate = policyWristVideo.playbackRate = r;
+      policyHeadVideo.currentTime = 0;
+      policyWristVideo.currentTime = 0;
+      policyHeadVideo.pause();
+      policyWristVideo.pause();
+      policyStatus.textContent = `Loaded ${t.task} / ${ep.id}`;
+    }
+
+    policyPlayBtn.onclick = ()=>{ policyWristVideo.currentTime = policyHeadVideo.currentTime; policyHeadVideo.play(); policyWristVideo.play(); };
+    policyPauseBtn.onclick = ()=>{ policyHeadVideo.pause(); policyWristVideo.pause(); };
+    policySpeedSelect.onchange = ()=>{ const r = parseFloat(policySpeedSelect.value); policyHeadVideo.playbackRate = policyWristVideo.playbackRate = r; };
+    policyTaskSelect.onchange = onPolicyTaskChange;
+    policyEpisodeSelect.onchange = onPolicyEpisodeChange;
+
+    function onTaskChange() {
+      const t = manifest[taskSelect.value];
+      if (!t) return;
+      episodeSelect.innerHTML = t.episodes.map((ep,i)=>`<option value="${i}">${ep.id}</option>`).join('');
+      let defaultIdx = t.episodes.findIndex(ep => ep.id === 'episode_000002');
+      if (defaultIdx < 0) defaultIdx = Math.min(1, t.episodes.length - 1); // fallback to ep 2 if exists else first
+      episodeSelect.value = defaultIdx.toString();
+      onEpisodeChange();
+    }
+
+    async function onEpisodeChange() {
+      const t = manifest[taskSelect.value];
+      const ep = t && t.episodes[episodeSelect.value];
+      if (!ep) return;
+      headVideo.src = encodeURI(ep.head_video);
+      wristVideo.src = encodeURI(ep.wrist_video);
+      headVideo.playbackRate = wristVideo.playbackRate = parseFloat(speedSelect.value);
+      headVideo.currentTime = 0;
+      wristVideo.currentTime = 0;
+      headVideo.pause();
+      wristVideo.pause();
+      try {
+        await loadJsonl(ep.jsonl);
+        renderPlots();
+        statusEl.textContent = `Loaded ${t.task} / ${ep.id}`;
+      } catch (e) {
+        console.error(e);
+        statusEl.textContent = 'Failed to load JSONL';
+      }
+    }
+
+    async function loadJsonl(path) {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error('fetch jsonl failed');
+      const text = await res.text();
+      const lines = text.split(/\n+/).filter(Boolean);
+      obsData = [];
+      cmdData = [];
+      channelNames = defaultChannelNames.slice();
+      for (const rawLine of lines) {
+        // JSONL has bare NaN values; replace with null for valid JSON.
+        const line = rawLine.replace(/\bNaN\b/g, 'null').replace(/\bInfinity\b/g, 'null');
+        const rec = JSON.parse(line);
+        const obs = rec['observation.state'] || rec['observation.state_raw_v5'] || rec['observation.qpos_actual'];
+        const cmd = rec['action_command'] || rec['action_command_raw_v5'] || rec['action'];
+        if (!obs || !cmd) continue;
+        obsData.push(obs.slice(0,11));
+        cmdData.push(cmd.slice(0,11));
+      }
+    }
+
+    function renderPlots() {
+      const plotsContainer = document.getElementById('plots');
+      plotsContainer.innerHTML = '';
+      plotDivs = [];
+      const frames = obsData.map((_,i)=>i);
+      for (let i=0;i<11;i++) {
+        const div = document.createElement('div');
+        div.className = 'plot-box';
+        plotsContainer.appendChild(div);
+        const obsY = obsData.map(r=>r[i]);
+        const cmdY = cmdData.map(r=>r[i]);
+        Plotly.newPlot(div, [
+          {x: frames, y: obsY, name:'obs', line:{color:'#3cb6f6'}},
+          {x: frames, y: cmdY, name:'action', line:{color:'#f8961e'}},
+          {x: [0], y:[obsY[0]??0], mode:'markers', name:'cursor', marker:{color:'#e63946', size:6}}
+        ], {
+          height: 180,
+          margin:{l:40,r:10,t:20,b:30},
+          showlegend: i===0,
+          paper_bgcolor:'rgba(0,0,0,0)',
+          plot_bgcolor:'rgba(0,0,0,0)',
+          title:{text:channelNames[i]||`Ch ${i+1}`, font:{size:12}},
+          xaxis:{title:'frame', showgrid:false},
+          yaxis:{showgrid:false}
+        }, {displaylogo:false, responsive:true});
+        plotDivs.push(div);
+      }
+    }
+
+    function updateCursor(frameIdx) {
+      if (!obsData.length) return;
+      frameIdx = Math.max(0, Math.min(frameIdx, obsData.length-1));
+      plotDivs.forEach((div,i)=>{
+        const y = obsData[frameIdx]?.[i] ?? 0;
+        Plotly.restyle(div, {x:[[frameIdx]], y:[[y]]}, 2);
+      });
+    }
+
+    // No continuous sync to avoid play/pause toggling; play/pause buttons handle both videos.
+
+    playBtn.onclick = ()=>{ wristVideo.currentTime = headVideo.currentTime; headVideo.play(); wristVideo.play(); };
+    pauseBtn.onclick = ()=>{ headVideo.pause(); wristVideo.pause(); };
+    speedSelect.onchange = ()=>{
+      const r = parseFloat(speedSelect.value);
+      headVideo.playbackRate = wristVideo.playbackRate = r;
+    };
+    taskSelect.onchange = onTaskChange;
+    episodeSelect.onchange = onEpisodeChange;
+
+    headVideo.addEventListener('timeupdate', ()=>{
+      const idx = Math.max(0, Math.round((headVideo.currentTime || 0) * fps));
+      updateCursor(idx);
+    });
+
+    loadManifest().catch(err=>{ statusEl.textContent = 'Failed to load manifest'; console.error(err); });
+    loadPolicyManifest().catch(err=>{ policyStatus.textContent = 'Failed to load policy manifest'; console.error(err); });
+  </script>
+</body>
+</html>
