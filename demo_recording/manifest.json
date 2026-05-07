@@ -555,13 +555,6 @@
         "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000010/head_rgb.mp4",
         "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000010/wrist_rgb.mp4",
         "jsonl": ""
-      },
-      {
-        "id": "episode_000011",
-        "prompt": "Stack the green and red blocks on the blue block.",
-        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000011/head_rgb.mp4",
-        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000011/wrist_rgb.mp4",
-        "jsonl": ""
       }
     ]
   }
