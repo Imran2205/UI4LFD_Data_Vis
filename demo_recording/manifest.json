@@ -482,5 +482,87 @@
         "jsonl": "demo_recording/Slide_the_blue_cube_into_rectangle_A/episode_000006/episode_000006.jsonl"
       }
     ]
+  },
+  {
+    "task": "Stack_the_green_and_red_blocks_on_the_blue_block",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000001/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000002/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000003/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000004/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000005/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000006/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000007",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000007/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000007/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000008",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000008/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000008/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000009",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000009/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000009/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000010",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000010/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000010/wrist_rgb.mp4",
+        "jsonl": ""
+      },
+      {
+        "id": "episode_000011",
+        "prompt": "Stack the green and red blocks on the blue block.",
+        "head_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000011/head_rgb.mp4",
+        "wrist_video": "demo_recording/Stack_the_green_and_red_blocks_on_the_blue_block/episode_000011/wrist_rgb.mp4",
+        "jsonl": ""
+      }
+    ]
   }
 ]
