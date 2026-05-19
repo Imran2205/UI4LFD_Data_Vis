@@ -86,6 +86,36 @@
         "id": "episode_0017",
         "head_video": "policy_execution/success/episode_0017/head_rgb.mp4",
         "wrist_video": "policy_execution/success/episode_0017/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0018",
+        "head_video": "policy_execution/success/episode_0018/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0018/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0019",
+        "head_video": "policy_execution/success/episode_0019/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0019/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0020",
+        "head_video": "policy_execution/success/episode_0020/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0020/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0021",
+        "head_video": "policy_execution/success/episode_0021/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0021/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0022",
+        "head_video": "policy_execution/success/episode_0022/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0022/wrist_rgb.mp4"
+      },
+      {
+        "id": "episode_0023",
+        "head_video": "policy_execution/success/episode_0023/head_rgb.mp4",
+        "wrist_video": "policy_execution/success/episode_0023/wrist_rgb.mp4"
       }
     ]
   },
