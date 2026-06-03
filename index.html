@@ -244,11 +244,15 @@
     policyTaskSelect.onchange = onPolicyTaskChange;
     policyEpisodeSelect.onchange = onPolicyEpisodeChange;
 
+    function defaultDemoEpisodeId(taskName) {
+      return taskName.startsWith('Pour_') ? 'episode_000001' : 'episode_000002';
+    }
+
     function onTaskChange() {
       const t = manifest[taskSelect.value];
       if (!t) return;
       episodeSelect.innerHTML = t.episodes.map((ep,i)=>`<option value="${i}">${ep.id}</option>`).join('');
-      let defaultIdx = t.episodes.findIndex(ep => ep.id === 'episode_000002');
+      let defaultIdx = t.episodes.findIndex(ep => ep.id === defaultDemoEpisodeId(t.task));
       if (defaultIdx < 0) defaultIdx = Math.min(1, t.episodes.length - 1); // fallback to ep 2 if exists else first
       episodeSelect.value = defaultIdx.toString();
       onEpisodeChange();
