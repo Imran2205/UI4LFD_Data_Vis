@@ -1,5 +1,120 @@
 [
   {
+    "task": "Pour_water_into_the_transparent_cup_from_the_bottle",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000006/episode_000006.jsonl"
+      },
+      {
+        "id": "episode_000007",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000007/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000007/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000007/episode_000007.jsonl"
+      },
+      {
+        "id": "episode_000008",
+        "prompt": "Pour water into the transparent cup from the bottle",
+        "head_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000008/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000008/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_transparent_cup_from_the_bottle/episode_000008/episode_000008.jsonl"
+      }
+    ]
+  },
+  {
+    "task": "Pour_water_into_the_left_cup_from_the_right_cup",
+    "episodes": [
+      {
+        "id": "episode_000001",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000001/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000001/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000001/episode_000001.jsonl"
+      },
+      {
+        "id": "episode_000002",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000002/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000002/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000002/episode_000002.jsonl"
+      },
+      {
+        "id": "episode_000003",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000003/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000003/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000003/episode_000003.jsonl"
+      },
+      {
+        "id": "episode_000004",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000004/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000004/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000004/episode_000004.jsonl"
+      },
+      {
+        "id": "episode_000005",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000005/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000005/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000005/episode_000005.jsonl"
+      },
+      {
+        "id": "episode_000006",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000006/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000006/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000006/episode_000006.jsonl"
+      },
+      {
+        "id": "episode_000007",
+        "prompt": "Pour water into the left cup from the right cup",
+        "head_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000007/head_rgb.mp4",
+        "wrist_video": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000007/wrist_rgb.mp4",
+        "jsonl": "demo_recording/Pour_water_into_the_left_cup_from_the_right_cup/episode_000007/episode_000007.jsonl"
+      }
+    ]
+  },
+  {
     "task": "Grasp_the_blue_block",
     "episodes": [
       {
